@@ -4,7 +4,8 @@ import {Linking} from 'expo';
 import {Button} from 'react-native-elements';
 
 type AnchorProps = {
-    url:string
+    url:string,
+    title?:string
 }
 
 export class Anchor extends React.Component<AnchorProps>{
@@ -22,7 +23,7 @@ export class Anchor extends React.Component<AnchorProps>{
 
     render(){
         return(
-            <Button onPress={() => this.openLink(this.props.url)} buttonStyle={styles.anchor} title="Comprar"/>
+            <Button onPress={() => this.openLink(this.props.url)} buttonStyle={styles.anchor} title={this.props.title || "Comprar"}/>
         )
     }
 }
@@ -30,6 +31,6 @@ export class Anchor extends React.Component<AnchorProps>{
 const styles = StyleSheet.create({
     anchor:{
         backgroundColor: "#0056b3",
-
+        marginBottom:10
     }
 })

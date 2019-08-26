@@ -26,7 +26,7 @@ export class ConcreteSearchResultsBuilder extends React.Component<ResultBuilderP
                 stores=[
                     {store:"amazon", verboseStore:"Amazon"},
                     {store:"fnac", verboseStore:"Fnac"},
-                    // {store:"game", verboseStore:"Game"},
+                    {store:"game", verboseStore:"Game"},
                     {store:"corte_ingles", verboseStore:"El corte inglés"},
                     {store:"instant_gaming", verboseStore:"Instant Gaming"},
                     {store:"steam", verboseStore:"Steam"},
@@ -37,19 +37,19 @@ export class ConcreteSearchResultsBuilder extends React.Component<ResultBuilderP
                 break;     
             case Platform.Pc:
                 stores=[
+                    {store:"steam", verboseStore:"Steam"},
                     {store:"amazon", verboseStore:"Amazon"},
                     {store:"fnac", verboseStore:"Fnac"},
-                    // {store:"game", verboseStore:"Game"},
+                    {store:"game", verboseStore:"Game"},
                     {store:"corte_ingles", verboseStore:"El corte inglés"},
                     {store:"instant_gaming", verboseStore:"Instant Gaming"},
-                    {store:"steam", verboseStore:"Steam"}
                 ]
                 break;     
             case Platform.Nintendo:
                 stores=[
                     {store:"amazon", verboseStore:"Amazon"},
                     {store:"fnac", verboseStore:"Fnac"},
-                    // {store:"game", verboseStore:"Game"},
+                    {store:"game", verboseStore:"Game"},
                     {store:"corte_ingles", verboseStore:"El corte inglés"},
                     {store:"instant_gaming", verboseStore:"Instant Gaming"},
                     {store:"nintendo", verboseStore:"Nintendo eShop"}
@@ -59,7 +59,7 @@ export class ConcreteSearchResultsBuilder extends React.Component<ResultBuilderP
                 stores=[
                     {store:"amazon", verboseStore:"Amazon"},
                     {store:"fnac", verboseStore:"Fnac"},
-                    // {store:"game", verboseStore:"Game"},
+                    {store:"game", verboseStore:"Game"},
                     {store:"corte_ingles", verboseStore:"El corte inglés"},
                     {store:"instant_gaming", verboseStore:"Instant Gaming"},
                     {store:"playstation", verboseStore:"Playstation Store"}
@@ -69,7 +69,7 @@ export class ConcreteSearchResultsBuilder extends React.Component<ResultBuilderP
                 stores=[
                     {store:"amazon", verboseStore:"Amazon"},
                     {store:"fnac", verboseStore:"Fnac"},
-                    // {store:"game", verboseStore:"Game"},
+                    {store:"game", verboseStore:"Game"},
                     {store:"corte_ingles", verboseStore:"El corte inglés"},
                     {store:"instant_gaming", verboseStore:"Instant Gaming"},
                     {store:"xbox", verboseStore:"Xbox"}
@@ -79,14 +79,14 @@ export class ConcreteSearchResultsBuilder extends React.Component<ResultBuilderP
                 stores=[
                     {store:"amazon", verboseStore:"Amazon"},
                     {store:"fnac", verboseStore:"Fnac"},
-                    // {store:"game", verboseStore:"Game"},
+                    {store:"game", verboseStore:"Game"},
                     {store:"corte_ingles", verboseStore:"El corte inglés"},
                     {store:"instant_gaming", verboseStore:"Instant Gaming"}
                 ]
                 break;          
         }
         return(
-            <ScrollView>
+            <ScrollView style={{marginBottom: 20}}>
                 {stores.map((store) => {
                     return(
                         <ConcreteSearchResult query={this.props.query} key={store.store} store={store.store} verboseStore={store.verboseStore}/>

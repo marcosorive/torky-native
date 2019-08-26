@@ -77,17 +77,21 @@ export class ConcreteSearchResult extends React.Component<ConcreteResultProps,Co
         }
     }
     render(){
+        let {results, error, isLoaded} = this.state;
         let cardContent = undefined;
+        if(results === undefined){
+            error="Se he encontrado un error"
+        }
         if( ! this.state.isLoaded){
             cardContent = <ActivityIndicator size="large" color="#0000ff" />
-        }else if(this.state.error){
+        }else if(error){
             cardContent = <Text style={styles.error}>No se ha podido encontrar el precio</Text>
         }else{
-            let res=this.state.results;
+            console.log(this.state)
             cardContent = ( <View>
-                                <Text style={styles.name}>{res.gamename}</Text>
-                                <Text style={styles.price}>{res.price}</Text>                                
-                                <Anchor url={res.url}>Comprar</Anchor>
+                                <Text style={styles.name}>{results.gamename}</Text>
+                                <Text style={styles.price}>{results.price}</Text>                                
+                                <Anchor url={results.url}/>
                             </View>
                             )
         }

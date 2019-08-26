@@ -22,7 +22,7 @@ export class ResultsScreen extends React.Component<ResultsScreenProps>{
     render(){
         let {query, platform} = this.props.navigation.state.params;
         return(
-            <View style={{flex:1}}>
+            <View style={{flex:1, backgroundColor:"#efefef"}}>
                 <StatusBar backgroundColor="blue"/>
                 {/* <Text style={{flex:1, backgroundColor:"red"}}> This is results for {query} in {platform}</Text> */}
                 <View style={{flex:1}}>
