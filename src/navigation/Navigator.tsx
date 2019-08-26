@@ -7,7 +7,6 @@ const BottomTabNavigator = createBottomTabNavigator(
   {
     Search:{
       screen: SearchScreen,
-      headerTitle: "Torky"
     },
     About:{
       screen:  AboutScreen,
@@ -28,7 +27,6 @@ export const AppNavigator = createStackNavigator(
     },
     Results:{
       screen:  ResultsScreen,
-
       
     } 
   },

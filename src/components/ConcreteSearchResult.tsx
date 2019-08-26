@@ -1,6 +1,7 @@
 import React from 'react'
 import {ApiResponse} from '../common/models/ApiResponse';
-import {ActivityIndicator,Text} from 'react-native';
+import {Anchor} from './Anchor';
+import {ActivityIndicator,Text, View, StyleSheet} from 'react-native';
 import { Card } from 'react-native-elements';
 
 type ConcreteResultProps = {
@@ -29,7 +30,9 @@ export class ConcreteSearchResult extends React.Component<ConcreteResultProps,Co
             error:undefined
         }
         this.fetchApiResults = this.fetchApiResults.bind(this);
+        
     }
+
 
     async fetchApiResults(){
         try{
@@ -74,28 +77,41 @@ export class ConcreteSearchResult extends React.Component<ConcreteResultProps,Co
         }
     }
     render(){
+        let cardContent = undefined;
         if( ! this.state.isLoaded){
-            return(
-                <Card title={this.props.verboseStore}>         
-                    <ActivityIndicator size="large" color="#0000ff" />
-                </Card>
-            )
+            cardContent = <ActivityIndicator size="large" color="#0000ff" />
         }else if(this.state.error){
-            return(
-                <Text>No se ha podido encontrar el precio</Text>
-            )
+            cardContent = <Text style={styles.error}>No se ha podido encontrar el precio</Text>
         }else{
             let res=this.state.results;
-            return(
-                <Card
-                    title={this.props.verboseStore}>
-                    <Text style={{marginBottom: 10, textAlign: "center"}}>{res.price}</Text>
-				    <Text>{res.gamename}</Text>
-				    <Text>Precio:   - {res.url} - Comprar</Text>
-                </Card>
-                
-            )
+            cardContent = ( <View>
+                                <Text style={styles.name}>{res.gamename}</Text>
+                                <Text style={styles.price}>{res.price}</Text>                                
+                                <Anchor url={res.url}>Comprar</Anchor>
+                            </View>
+                            )
         }
-        
+        return(
+            <Card title={this.props.verboseStore}>         
+                {cardContent}
+            </Card>
+        )
     }
 }
+
+const styles = StyleSheet.create({
+    error:{
+        textAlign:"center",
+        fontWeight: "bold"
+    },
+    name:{
+        textAlign:"center",
+        fontWeight: "bold",
+        marginBottom: 20,
+        fontSize: 15
+    },
+    price:{
+        textAlign:"center",
+        fontSize: 20,
+        marginBottom: 10 }
+})

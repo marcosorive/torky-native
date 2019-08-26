@@ -18,7 +18,6 @@ class SearchbarNoNavigation extends Component<NavigationInjectedProps,SearchbarS
 
     constructor(props: NavigationInjectedProps){
         super(props)
-        this.props.navigation.setParams({headerMode: "float"})
         this.state = {
             platform: undefined,
             gameQuery: undefined,
