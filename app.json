@@ -1,21 +1,21 @@
 {
   "expo": {
-    "name": "Torky app for smarthphones",
-    "slug": "torky-native",
+    "name": "Torky Mobile",
+    "slug": "torky-mobile",
     "privacy": "public",
     "sdkVersion": "34.0.0",
     "platforms": [
       "ios",
-      "android",
-      "web"
+      "android"
     ],
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
+    "owner":"Marcos Orive Izarra",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#efefef"
     },
     "updates": {
       "fallbackToCacheTimeout": 0

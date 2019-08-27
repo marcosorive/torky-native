@@ -86,7 +86,7 @@ export class ConcreteSearchResultsBuilder extends React.Component<ResultBuilderP
                 break;          
         }
         return(
-            <ScrollView style={{marginBottom: 20}}>
+            <ScrollView>
                 {stores.map((store) => {
                     return(
                         <ConcreteSearchResult query={this.props.query} key={store.store} store={store.store} verboseStore={store.verboseStore}/>

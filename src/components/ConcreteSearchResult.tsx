@@ -87,7 +87,6 @@ export class ConcreteSearchResult extends React.Component<ConcreteResultProps,Co
         }else if(error){
             cardContent = <Text style={styles.error}>No se ha podido encontrar el precio</Text>
         }else{
-            console.log(this.state)
             cardContent = ( <View>
                                 <Text style={styles.name}>{results.gamename}</Text>
                                 <Text style={styles.price}>{results.price}</Text>                                
@@ -96,7 +95,7 @@ export class ConcreteSearchResult extends React.Component<ConcreteResultProps,Co
                             )
         }
         return(
-            <Card title={this.props.verboseStore}>         
+            <Card title={this.props.verboseStore} containerStyle={styles.card}>         
                 {cardContent}
             </Card>
         )
@@ -117,5 +116,8 @@ const styles = StyleSheet.create({
     price:{
         textAlign:"center",
         fontSize: 20,
-        marginBottom: 10 }
+        marginBottom: 10 },
+    card:{
+        marginBottom: 20
+    }
 })
