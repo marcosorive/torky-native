@@ -15,74 +15,88 @@ type ConcretResultState = {
     store:string,
     isLoaded: boolean,
     results: ApiResponse,
-    error: string
+    error: string,
 }
 
 export class ConcreteSearchResult extends React.Component<ConcreteResultProps,ConcretResultState>{
 
+    mounted:boolean;
+
     constructor(props: ConcreteResultProps){
         super(props)
+        this.mounted = true;
         this.state={
             query:this.props.query,
             store:this.props.store,
             isLoaded:false,
             results:undefined,
-            error:undefined
+            error:undefined,
         }
-        this.fetchApiResults = this.fetchApiResults.bind(this);
-        
+        this.fetchApiResults = this.fetchApiResults.bind(this);        
     }
 
 
     async fetchApiResults(){
         try{
-            let response = await fetch("http://torky.herokuapp.com/api/search/"+this.props.query+"/"+this.props.store,{
+            const response = await fetch("http://torky.herokuapp.com/api/search/"+this.props.query+"/"+this.props.store,{
                 mode:"cors",
             });
-            if(response.ok){
+            if(response.ok && this.mounted){
                 this.setState({
                     isLoaded:true,
                     results: await response.json(),
                 })
             }else{
-                this.setState({
-                    isLoaded:true,
-                    error:response.statusText,
-                })
+                if(this.mounted){
+                    this.setState({
+                        isLoaded:true,
+                        error:response.statusText,
+                    })
+                }
             }
         }
         catch(error){
-            this.setState({
-                isLoaded:true,
-                error:error.message,
-            })
+            if(this.mounted){
+                this.setState({
+                    isLoaded:true,
+                    error:error.message,
+                })
+            }
         }
     }
 
     componentDidMount(){
+        this.mounted=true;
         this.fetchApiResults()
     }
 
     componentDidUpdate(){
         if( this.props.query !== this.state.query || this.props.store !== this.state.store){
-            this.setState({
+            if(this.mounted){
+                this.setState({
                     query:this.props.query,
                     store:this.props.store,
                     isLoaded:false,
                     results:undefined,
                     error:undefined
                 
-            })
+                })
+            }            
             this.fetchApiResults();
         }
     }
+
+    componentWillUnmount(){
+        this.mounted=false;
+      }
+
     render(){
         let {results, error, isLoaded} = this.state;
         let cardContent = undefined;
         if(results === undefined){
             error="Se he encontrado un error"
         }
-        if( ! this.state.isLoaded){
+        if( !isLoaded){
             cardContent = <ActivityIndicator size="large" color="#0000ff" />
         }else if(error){
             cardContent = <Text style={styles.error}>No se ha podido encontrar el precio</Text>
