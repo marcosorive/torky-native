@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Torky Mobile",
-    "slug": "torky-mobile",
+    "name": "Torky Native",
+    "slug": "torky-native",
     "privacy": "public",
     "sdkVersion": "34.0.0",
     "platforms": [
@@ -25,7 +25,8 @@
       "supportsTablet": true
     },
     "android":{
-      "package":"me.orive.marcos.torky"
+      "package":"me.orive.marcos.torkynative",
+      "permissions":[]
     }
   }
 }
